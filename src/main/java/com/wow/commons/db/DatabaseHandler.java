@@ -1,4 +1,4 @@
-package com.wow.db;
+package com.wow.commons.db;
 
 import com.wow.config.Config;
 import misc.Logger;

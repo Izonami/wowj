@@ -1,6 +1,6 @@
 package com.wow.logon;
 
-import com.wow.db.DatabaseHandler;
+import com.wow.commons.db.DatabaseHandler;
 import com.wow.entities.Client;
 import com.wow.entities.packet.AuthPacket;
 import com.wow.entities.packet.ClientPacket;

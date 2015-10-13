@@ -5,7 +5,7 @@
 package com.wow;
 
 import com.wow.config.Config;
-import com.wow.db.DatabaseConnection;
+import com.wow.commons.db.DatabaseConnection;
 import com.wow.network.Connection;
 import com.wow.network.LogonConnection;
 import misc.Logger;

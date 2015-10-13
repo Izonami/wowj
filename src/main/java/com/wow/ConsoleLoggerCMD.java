@@ -1,6 +1,6 @@
 package com.wow;
 
-import com.wow.db.DatabaseHandler;
+import com.wow.commons.db.DatabaseHandler;
 import com.wow.utils.crypto.HashHelper;
 import misc.Logger;
 
