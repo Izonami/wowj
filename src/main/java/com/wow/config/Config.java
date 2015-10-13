@@ -5,6 +5,8 @@ package com.wow.config;
  */
 public class Config extends ConfigEngine
 {
+    public static final String EOL = System.lineSeparator();
+
     public static final String CHARACTER_CONFIG_FILE = "dist/game/config/Character.properties";
     public static final String LOGIN_CONFIGURATION_FILE = "dist/game/config/LoginServer.properties";
     public static final String CONFIGURATION_FILE = "config/";
@@ -32,16 +34,41 @@ public class Config extends ConfigEngine
     @ConfigField(config = "server", fieldName = "Password", value = "")
     public static String DATABASE_PASSWORD;
 
-    @ConfigField(config = "server", fieldName = "realmlist", value = "test")
+    @ConfigField(config = "server", fieldName = "realmlist", value = "127.0.0.1")
     public static String REALMLIST;
     @ConfigField(config = "server", fieldName = "enableGUI", value = "true")
     public static boolean ENABLE_GUI;
     @ConfigField(config = "server", fieldName = "gameserverPort", value = "7777")
     public static int GAMESERVER_PORT;
+    @ConfigField(config = "server", fieldName = "DatapackRoot", value = ".")
+    public static String DATAPACK_ROOT;
+    @ConfigField(config = "server", fieldName = "MaxOnlineUser", value = "10")
+    public static String MAXIMUM_ONLINE_USERS;
+
+    @ConfigField(config = "server", fieldName = "DeadLockCheckInterval", value = "true")
+    public static boolean DEADLOCK_DETECTOR;
+    @ConfigField(config = "server", fieldName = "DeadLockCheckInterval", value = "20")
+    public static int DEADLOCK_CHECK_INTERVAL;
+    @ConfigField(config = "server", fieldName = "RestartOnDeadlock", value = "false")
+    public static boolean RESTART_ON_DEADLOCK;
+
+    // MMO
+    @ConfigField(config = "mmo", fieldName = "SleepTime", value = "20")
+    public static int MMO_SELECTOR_SLEEP_TIME;
+    @ConfigField(config = "mmo", fieldName = "MaxSendPerPass", value = "12")
+    public static int MMO_MAX_SEND_PER_PASS;
+    @ConfigField(config = "mmo", fieldName = "MaxReadPerPass", value = "12")
+    public static int MMO_MAX_READ_PER_PASS;
+    @ConfigField(config = "mmo", fieldName = "HelperBufferCount", value = "20")
+    public static int MMO_HELPER_BUFFER_COUNT;
+    @ConfigField(config = "mmo", fieldName = "TcpNoDelay", value = "false")
+    public static boolean MMO_TCP_NODELAY;
+
 
 
     public static void load()
     {
         loadConfig(Config.class, "server", CONFIGURATION_FILE);
+        loadConfig(Config.class, "mmo", CONFIGURATION_FILE);
     }
 }

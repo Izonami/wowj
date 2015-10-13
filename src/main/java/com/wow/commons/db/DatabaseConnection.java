@@ -24,7 +24,7 @@ public class DatabaseConnection
 			BoneCPConfig config = new BoneCPConfig();
 			
 			// jdbc:mysql://127.0.0.1:3306/"
-			String JdbcURL = "jdbc:mysql://" + Config.DATABASE_URL + ":" + Config.DATABASE_PORT;
+			String JdbcURL = Config.DATABASE_URL + ":" + Config.DATABASE_PORT;
 
 			config.setJdbcUrl(JdbcURL);
 			config.setUsername(Config.DATABASE_LOGIN);
