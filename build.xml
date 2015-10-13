@@ -87,7 +87,7 @@
         <tstamp>
             <format property="build.date" pattern="yyyy-MM-dd"/>
         </tstamp>
-        <zip destfile="${build}/L2J_Server_${build.date}.zip" basedir="${build.dist}" level="9" />
+        <zip destfile="${build}/WOWJ_${build.date}.zip" basedir="${build.dist}" level="9" />
     </target>
 
 </project>
