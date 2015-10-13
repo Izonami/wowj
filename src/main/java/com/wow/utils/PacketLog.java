@@ -1,14 +1,10 @@
 package com.wow.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.wow.Server;
 import com.wow.ServerWindow;
+import com.wow.config.Config;
 import com.wow.entities.packet.Packet;
+
+import java.util.*;
 
 public class PacketLog {
 	
@@ -28,7 +24,7 @@ public class PacketLog {
 		packets.add(p);
 
 		// Notify the GUI new packets have been logged
-		if (Integer.parseInt(Server.prop.getProperty("enableGUI")) != 0) {
+		if (Config.ENABLE_GUI) {
 			ServerWindow.notifyChange();
 		}
 	}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wowj" default="build" basedir=".">
+
+    <property name="build" location="build" />
+    <property name="build.bin" location="${build}/bin" />
+    <property name="build.dist" location="${build}/dist" />
+    <property name="build.dist.game" location="${build.dist}/game" />
+    <property name="build.dist.login" location="${build.dist}/login" />
+    <property name="build.dist.tools" location="${build.dist}/tools" />
+    <property name="libs" location="dist/libs" />
+    <property name="src" location="src/main/java" />
+
+    <path id="classpath">
+        <fileset dir="${libs}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <pathconvert property="manifest.libs" pathsep=" ">
+        <path refid="classpath" />
+        <mapper>
+            <chainedmapper>
+                <flattenmapper />
+                <globmapper from="*.jar" to="../libs/*.jar" />
+            </chainedmapper>
+        </mapper>
+    </pathconvert>
+
+    <target name="checkRequirements" description="Check Requirements.">
+        <fail message="Ant 1.8.2 is required. But your version is ${ant.version} and if you are using Eclipse probably is outdated.">
+            <condition>
+                <not>
+                    <antversion atleast="1.8.2" />
+                </not>
+            </condition>
+        </fail>
+        <available classname="java.util.stream.Stream" property="JDK8.present" />
+        <fail unless="JDK8.present" message="Java 1.8 is required. But your version is Java ${ant.java.version} and probably JDK is not installed." />
+    </target>
+
+    <target name="init" depends="checkRequirements" description="Create the output directories.">
+        <delete dir="${build.bin}" quiet="true" />
+        <mkdir dir="${build.bin}" />
+    </target>
+
+    <target name="dist" depends="init" description="Export the files to the output directory.">
+        <sync todir="${build.dist}" includeemptydirs="true">
+            <fileset dir="dist" />
+        </sync>
+    </target>
+
+    <target name="compile" depends="dist" description="Compile the source.">
+        <javac srcdir="${src}" classpathref="classpath" destdir="${build.bin}" compiler="modern" debug="true" debuglevel="lines,vars,source" includeantruntime="false" source="1.8" target="1.8" />
+    </target>
+
+    <target name="jar" depends="compile" description="Create the jar files.">
+        <tstamp>
+            <format property="time.stamp" pattern="yyyy-MM-dd HH:mm:ss" />
+        </tstamp>
+
+        <jar destfile="${build.dist.login}/wlogin.jar" level="9">
+            <fileset dir="${build.bin}">
+                <exclude name="**/gameserver/**" />
+            </fileset>
+            <manifest>
+                <attribute name="Built-By" value="${user.name}" />
+                <attribute name="Built-Date" value="${time.stamp}" />
+               <!-- <attribute name="Class-Path" value="../libs/c3p0-0.9.5.jar ../libs/javolution-5.5.1.jar ../libs/mail-1.5.2.jar" />
+                <attribute name="Main-Class" value="com.l2jserver.loginserver.L2LoginServer" /> -->
+            </manifest>
+        </jar>
+
+        <jar destfile="${build.dist.game}/wserver.jar" level="9">
+            <fileset dir="${build.bin}">
+                <exclude name="**/loginserver/**" />
+            </fileset>
+            <manifest>
+                <attribute name="Built-By" value="${user.name}" />
+                <attribute name="Built-Date" value="${time.stamp}" />
+                <attribute name="Class-Path" value="${manifest.libs}" />
+                <attribute name="Main-Class" value="com.wow.Server" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="build" depends="jar" description="Create the Zip file.">
+        <tstamp>
+            <format property="build.date" pattern="yyyy-MM-dd"/>
+        </tstamp>
+        <zip destfile="${build}/L2J_Server_${build.date}.zip" basedir="${build.dist}" level="9" />
+    </target>
+
+</project>

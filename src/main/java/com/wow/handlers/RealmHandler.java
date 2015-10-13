@@ -1,12 +1,12 @@
 package com.wow.handlers;
 
-import java.util.ArrayList;
-
 import com.wow.Server;
 import com.wow.entities.Client;
 import com.wow.entities.Realm;
 import com.wow.entities.packet.AuthPacket;
 import com.wow.enums.ClientVersion;
+
+import java.util.ArrayList;
 
 public class RealmHandler {
 	
@@ -64,7 +64,7 @@ public class RealmHandler {
 	/**
 	 * Creates a new realm for the given version if it doesn't exist already
 	 * 
-	 * @param version The WoW client version, such as 335
+	 * @param version The WoW gameserverpackets version, such as 335
 	 */
 	public static void addVersionRealm(ClientVersion version){
 		for(Realm realm : realms)

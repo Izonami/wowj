@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import com.wow.Server;
 import com.wow.entities.packet.ServerPacket;
 import com.wow.enums.ClientVersion;
-import com.wow.net.WorldConnection;
+import com.wow.network.WorldConnection;
 import com.wow.utils.Opcodes;
 import com.wow.utils.PacketMap;
 import misc.Logger;
@@ -41,7 +41,7 @@ public class Realm extends Thread {
 	ServerSocket socket = null;
 
 	public Realm() {
-		this(1, "Marijnz ultimate server", Server.realmlist, 3456, ClientVersion.VERSION_WOTLK);
+		this(1, "Marijnz ultimate serverpackets", Server.realmlist, 3456, ClientVersion.VERSION_WOTLK);
 	}
 
 	/**
@@ -98,25 +98,25 @@ public class Realm extends Thread {
 	}
 
 	/**
-	 * Add a new client to the realm, usually done after the client has been connected to it.
-	 * @param client The connected client
+	 * Add a new gameserverpackets to the realm, usually done after the gameserverpackets has been connected to it.
+	 * @param client The connected gameserverpackets
 	 */
 	public void addClient(Client client) {
 		clients.add(client);
 	}
 
 	/**
-	 * Removes a client from the realm, usually done after the client has been disconnected.
-	 * @param client The disconnected client
+	 * Removes a gameserverpackets from the realm, usually done after the gameserverpackets has been disconnected.
+	 * @param client The disconnected gameserverpackets
 	 */
 	public void removeClient(Client client) {
 		clients.remove(client);
 	}
 
 	/**
-	 * Get a client connected to this realm
+	 * Get a gameserverpackets connected to this realm
 	 * 
-	 * @param name The name of the client
+	 * @param name The name of the gameserverpackets
 	 * @return
 	 */
 	public Client getClient(String name) {
@@ -132,13 +132,13 @@ public class Realm extends Thread {
 	}
 
 	/**
-	 * Send a packet to all connected clients except for passed client
+	 * Send a packet to all connected clients except for passed gameserverpackets
 	 */
 	public void sendAllClients(ServerPacket p, Client ignoreClient){
-		Logger.writeLog("Ignore client: " + ignoreClient.getName(), Logger.LOG_TYPE_VERBOSE);
+		Logger.writeLog("Ignore gameserverpackets: " + ignoreClient.getName(), Logger.LOG_TYPE_VERBOSE);
 		for(Client client : clients)
 			if(!client.equals(ignoreClient)){
-				Logger.writeLog("Sending packet " + p.sOpcode + " to client: " + client.getName(), Logger.LOG_TYPE_VERBOSE);
+				Logger.writeLog("Sending packet " + p.sOpcode + " to gameserverpackets: " + client.getName(), Logger.LOG_TYPE_VERBOSE);
 				client.getWorldConnection().send(p);
 			}
 	}

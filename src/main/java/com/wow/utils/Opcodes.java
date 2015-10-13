@@ -157,7 +157,7 @@ public class Opcodes {
 	public static PacketMap formMoP(){
 		packets = new PacketMap();
 		
-		/* client side opcodes start */
+		/* gameserverpackets side opcodes start */
 
 		add(CMSG_CHAR_ENUM                		,0x0B1D);
 		add(CMSG_CHAR_CREATE               		,0x0404); 
@@ -209,10 +209,10 @@ public class Opcodes {
 												,0x0893
 												,0x0A56);
 		
-		/* client side opcodes end */
+		/* gameserverpackets side opcodes end */
 		
 		
-		/* server side opcodes start */
+		/* serverpackets side opcodes start */
 		
 		add(SMSG_AUTH_CHALLENGE 				,0x0221);  
 		add(SMSG_AUTH_RESPONSE 					,0x0890); 
@@ -238,7 +238,7 @@ public class Opcodes {
 		add(SMSG_REALM_SPLIT					,0x0F89);
 		add(SMSG_MOVE_UPDATE					,0x1109);
 
-		/* server side opcodes end */
+		/* serverpackets side opcodes end */
 
 		add(MSG_TRANSFER_INITIATE				,0x4F57);
 		

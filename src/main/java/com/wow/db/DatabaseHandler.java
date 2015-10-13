@@ -1,6 +1,6 @@
 package com.wow.db;
 
-import com.wow.Server;
+import com.wow.config.Config;
 import misc.Logger;
 
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class DatabaseHandler {
 	
-	private static String authDB = "USE " + Server.prop.getProperty("authDB");
+	private static String authDB = "USE " + Config.DATABASE_AUTH;
 	//private static String charactersDB = "USE " + Server.prop.getProperty("charactersDB");
 	//private static String worldDB = "USE " + Server.prop.getProperty("worldDB");
 	
@@ -22,7 +22,7 @@ public class DatabaseHandler {
 
 			ResultSet rst = conn.getMetaData().getCatalogs();
 
-			// inefficient checks every database name on server 3 times
+			// inefficient checks every database name on serverpackets 3 times
 			while (rst.next()) {
 				String dbName = rst.getString(1);
 				
@@ -66,14 +66,14 @@ public class DatabaseHandler {
 			return true;
 		}
 		// this will throw duplicate errors because of Unique constraint
-		// just silence the error and red text and tell client creation failed
+		// just silence the error and red text and tell gameserverpackets creation failed
 		catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
 	
-	// server console command -- this is hacky needs to be rewritten "for niceness"
+	// serverpackets console command -- this is hacky needs to be rewritten "for niceness"
 	public static void queryOnline() throws SQLException {
 		int counter = 0;
 		Connection conn = DatabaseConnection.getConnection();

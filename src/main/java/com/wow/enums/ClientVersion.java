@@ -5,7 +5,8 @@ package com.wow.enums;
  * @author Valkryst
  * --- Last Edit 11-June-2014
  */
-public enum ClientVersion {
+public enum ClientVersion
+{
 	VERSION_VANILLA(112), // 1.1.2
 	VERSION_BC(243), // 2.4.3
 	VERSION_WOTLK(335), // 3.3.5
@@ -14,7 +15,8 @@ public enum ClientVersion {
 	
 	private final int num;
 
-    private ClientVersion(final int num) {
+    ClientVersion(final int num)
+	{
         this.num = num;
     }
 

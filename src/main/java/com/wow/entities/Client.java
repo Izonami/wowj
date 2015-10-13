@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import com.wow.entities.character.Char;
 import com.wow.enums.ClientVersion;
 import com.wow.handlers.TempClientHandler;
-import com.wow.net.LogonConnection;
-import com.wow.net.WorldConnection;
+import com.wow.network.LogonConnection;
+import com.wow.network.WorldConnection;
 import com.wow.utils.crypto.BCCrypt;
 import com.wow.utils.crypto.GenericCrypt;
 import com.wow.utils.crypto.MoPCrypt;
@@ -20,7 +20,7 @@ import com.wow.utils.crypto.WotLKCrypt;
 import misc.Logger;
 
 /**
- * A client that is made upon logging in and will be destroyed on disconnecting.
+ * A gameserverpackets that is made upon logging in and will be destroyed on disconnecting.
  * 
  *
  * @author Marijn
@@ -41,8 +41,8 @@ public class Client {
     
     /**
      * Creates a new Client, the version given will 
-     * @param name The name of the client (username)
-     * @param version The patch/version of the client i.e.: 335. 
+     * @param name The name of the gameserverpackets (username)
+     * @param version The patch/version of the gameserverpackets i.e.: 335.
      */
     public Client(String name, ClientVersion version){
         this.name = name.toUpperCase();
@@ -91,21 +91,21 @@ public class Client {
     }
     
     /**
-     * @return The username of this client.
+     * @return The username of this gameserverpackets.
      */
     public String getName(){
         return name;
     }
     
     /**
-     * @return The worldsocket connection attached to this client.
+     * @return The worldsocket connection attached to this gameserverpackets.
      */
     public WorldConnection getWorldConnection(){
         return _worldConnection;
     }
     
     /**
-     * @param c The logonsocket connection that belongs to this client.
+     * @param c The logonsocket connection that belongs to this gameserverpackets.
      */
     public void attachLogon(LogonConnection c){
         _logonConnection = c;
@@ -113,7 +113,7 @@ public class Client {
     }
     
     /**
-     * @param c The worldsocket connection that belongs to this client.
+     * @param c The worldsocket connection that belongs to this gameserverpackets.
      */
     public void attachWorld(WorldConnection c){
         _worldConnection = c;
@@ -121,8 +121,8 @@ public class Client {
     }
     
     /**
-     * Connects the client to the assigned Realm
-     * @param realm The realm the client selected in the realmlist.
+     * Connects the gameserverpackets to the assigned Realm
+     * @param realm The realm the gameserverpackets selected in the realmlist.
      */
     public void connect(Realm realm){
     	this.realm = realm;
@@ -130,7 +130,7 @@ public class Client {
     }
     
     /**
-     * Disconnects the client,
+     * Disconnects the gameserverpackets,
      * - Removed from realm (if connected to realm)
      * - Closed logon connection
      * - Closed world connection
@@ -145,7 +145,7 @@ public class Client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	// World connection might not exist yet if the client is disconnected as a result of an incorrect password
+    	// World connection might not exist yet if the gameserverpackets is disconnected as a result of an incorrect password
     	if(_worldConnection != null){
 	    	try{
 	    		_worldConnection.getSocket().close();
@@ -198,7 +198,7 @@ public class Client {
    
     
     /**
-     * @return The Character this client is currently playing with (possibly null if the player didn't get past the character selection screen yet).
+     * @return The Character this gameserverpackets is currently playing with (possibly null if the player didn't get past the character selection screen yet).
      */
     public Char getCurrentCharacter() {
     	return currentCharacter;

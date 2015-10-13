@@ -1,11 +1,5 @@
 package com.wow.logon;
 
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import javax.xml.bind.DatatypeConverter;
-
 import com.wow.db.DatabaseHandler;
 import com.wow.entities.Client;
 import com.wow.entities.packet.AuthPacket;
@@ -13,15 +7,20 @@ import com.wow.entities.packet.ClientPacket;
 import com.wow.enums.ClientVersion;
 import com.wow.handlers.RealmHandler;
 import com.wow.handlers.TempClientHandler;
-import com.wow.net.LogonConnection;
+import com.wow.network.LogonConnection;
 import com.wow.utils.AuthCodes;
 import com.wow.utils.BigNumber;
 import misc.Logger;
+
+import javax.xml.bind.DatatypeConverter;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 //import com.wow.utils.AuthCodes;
 
     /**
      * 
-     * Authenticates a client to the realm server
+     * Authenticates a gameserverpackets to the realm serverpackets
      *
      * @author Marijn
      */
@@ -32,11 +31,11 @@ import misc.Logger;
         private static final BigNumber g = new BigNumber("7"); // Generator
         private static final BigNumber s = new BigNumber().setRand(32); // Salt
         private static final BigNumber k = new BigNumber("3"); // k - used to generate a lot..
-        private static final BigNumber b = new BigNumber().setRand(19); // server private value
+        private static final BigNumber b = new BigNumber().setRand(19); // serverpackets private value
         
         private BigNumber v; // Verifier
         private BigNumber gmod; // gmod - used to calculate B
-        private BigNumber B; // server public value
+        private BigNumber B; // serverpackets public value
         
         
         private MessageDigest md;
@@ -141,7 +140,7 @@ import misc.Logger;
             BigNumber x = new BigNumber();
             x.setBinary(md.digest());
 
-            // Generate B - the server public value
+            // Generate B - the serverpackets public value
             v = g.modPow(x, N);
             gmod = g.modPow(b, N);
             B = (v.multiply(k).add(gmod)).remainder(N);
@@ -211,7 +210,7 @@ import misc.Logger;
             for (int i = 0; i < 20; i++) 
                 vK[i * 2 + 1] = digest[i];
 
-            // generating M - the server's SRP6 M value
+            // generating M - the serverpackets's SRP6 M value
 
             md.update(N.asByteArray(32));
             byte[] hash = md.digest();

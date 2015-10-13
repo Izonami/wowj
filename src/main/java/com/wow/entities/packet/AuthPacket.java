@@ -5,7 +5,7 @@ import java.nio.ByteOrder;
 
 
 /**
- * A barebone packet only for the authentication of a client (used in LogonAuth)
+ * A barebone packet only for the authentication of a gameserverpackets (used in LogonAuth)
  * 
  * @author Marijn
  *

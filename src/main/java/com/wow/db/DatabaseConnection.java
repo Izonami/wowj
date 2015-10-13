@@ -2,31 +2,33 @@ package com.wow.db;
 
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
-import com.wow.Server;
+import com.wow.config.Config;
 import misc.Logger;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
-public class DatabaseConnection {
+public class DatabaseConnection
+{
 
 	private static BoneCP connectionPool = null;
 
-	public static void initConnectionPool(Properties prop) {
-		try {
+	public static void initConnectionPool()
+    {
+		try
+        {
 			Class.forName("org.mariadb.jdbc.Driver");
 
 			BoneCPConfig config = new BoneCPConfig();
 			
 			// jdbc:mysql://127.0.0.1:3306/"
-			String JdbcURL = "jdbc:mysql://" + Server.realmlist + ":" + prop.getProperty("databasePort");
+			String JdbcURL = "jdbc:mysql://" + Config.DATABASE_URL + ":" + Config.DATABASE_PORT;
 
 			config.setJdbcUrl(JdbcURL);
-			config.setUsername(prop.getProperty("user"));
-			config.setPassword(prop.getProperty("password"));
+			config.setUsername(Config.DATABASE_LOGIN);
+			config.setPassword(Config.DATABASE_PASSWORD);
 
 			config.setMinConnectionsPerPartition(3);
 			config.setMaxConnectionsPerPartition(5);
@@ -39,16 +41,19 @@ public class DatabaseConnection {
 			// Log.log("This many active physical connections: " + connectionPool.getTotalCreatedConnections());
 			DatabaseConnection.setConnectionPool(connectionPool);
 			
-			Boolean exists = DatabaseHandler.databasesExist(prop.getProperty("authDB").toLowerCase(), 
-															prop.getProperty("charactersDB").toLowerCase(), 
-															prop.getProperty("worldDB").toLowerCase());
+			Boolean exists = DatabaseHandler.databasesExist(Config.DATABASE_AUTH,
+															Config.DATABASE_CHAR,
+															Config.DATABASE_WORLD);
 			
-			if (!exists) {
+			if (!exists)
+            {
 				Logger.writeLog("One or more databases (authDB, charactersDB, or worldDB) do not exist.", Logger.LOG_TYPE_ERROR);
 				System.exit(0);
 			}
 
-		} catch (Exception e) {
+		}
+        catch (Exception e)
+        {
 			e.printStackTrace(); // Fix this.. exception wrapping.
 			System.exit(0);
 		}
@@ -56,56 +61,76 @@ public class DatabaseConnection {
 
 	// call at end of program to close all physical threads
 	public static void shutdownConnectionPool() {
-		try {
+		try
+        {
 			BoneCP connectionPool = DatabaseConnection.getConnectionPool();
 			Logger.writeLog("Shutting down connection pool.", Logger.LOG_TYPE_VERBOSE);
-			if (connectionPool != null) {
+			if (connectionPool != null)
+            {
 				connectionPool.shutdown();
 				Logger.writeLog("Connection pooling is destroyed successfully.", Logger.LOG_TYPE_VERBOSE);
 			}
-		} catch (Exception e) {
+		}
+        catch (Exception e)
+        {
 			e.printStackTrace();
 		}
 	}
 
 	// use to get a logical connection of a free physical connection
-	public static Connection getConnection() {
+	public static Connection getConnection()
+    {
 		Connection conn = null;
-		try {
+		try
+        {
 			// thread-safe
 			conn = getConnectionPool().getConnection();
-		} catch (Exception e) {
+		}
+        catch (Exception e)
+        {
 			e.printStackTrace();
 		}
 		return conn;
 	}
 
 	// simple close statement.. important dont forget to do this
-	public static void closeStatement(Statement stmt) {
-		try {
+	public static void closeStatement(Statement stmt)
+    {
+		try
+        {
 			if (stmt != null)
 				stmt.close();
-		} catch (Exception e) {
+		}
+        catch (Exception e)
+        {
 			e.printStackTrace();
 		}
 	}
 
 	// dont forget this either
-	public static void closeResultSet(ResultSet rSet) {
-		try {
+	public static void closeResultSet(ResultSet rSet)
+    {
+		try
+        {
 			if (rSet != null)
 				rSet.close();
-		} catch (Exception e) {
+		}
+        catch (Exception e)
+        {
 			e.printStackTrace();
 		}
 	}
 
 	// DO NOT FORGET TO CLOSE LOGICAL CONNECTIONS
-	public static void closeConnection(Connection conn) {
-		try {
+	public static void closeConnection(Connection conn)
+    {
+		try
+        {
 			if (conn != null)
 				conn.close(); // release the connection
-		} catch (SQLException e) {
+		}
+        catch (SQLException e)
+        {
 			e.printStackTrace();
 		}
 	}
