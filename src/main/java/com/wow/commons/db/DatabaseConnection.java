@@ -19,7 +19,7 @@ public class DatabaseConnection
     {
 		try
         {
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 
 			BoneCPConfig config = new BoneCPConfig();
 			
@@ -41,7 +41,7 @@ public class DatabaseConnection
 			// Log.log("This many active physical connections: " + connectionPool.getTotalCreatedConnections());
 			DatabaseConnection.setConnectionPool(connectionPool);
 			
-			Boolean exists = DatabaseHandler.databasesExist(Config.DATABASE_AUTH,
+			/*Boolean exists = DatabaseHandler.databasesExist(Config.DATABASE_AUTH,
 															Config.DATABASE_CHAR,
 															Config.DATABASE_WORLD);
 			
@@ -49,7 +49,7 @@ public class DatabaseConnection
             {
 				Logger.writeLog("One or more databases (authDB, charactersDB, or worldDB) do not exist.", Logger.LOG_TYPE_ERROR);
 				System.exit(0);
-			}
+			}*/
 
 		}
         catch (Exception e)

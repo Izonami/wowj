@@ -1,5 +1,6 @@
 package com.wow.commons.db;
 
+import com.wow.commons.database.pool.impl.ConnectionFactory;
 import com.wow.config.Config;
 import misc.Logger;
 
@@ -15,7 +16,7 @@ public class DatabaseHandler {
 	//private static String worldDB = "USE " + Server.prop.getProperty("worldDB");
 	
 	/* this is to check that auth, characters, and world actually exist */
-	public static boolean databasesExist(String auth, String characters, String world) throws SQLException {
+	/*public static boolean databasesExist(String auth, String characters, String world) throws SQLException {
 		try {
 			int databaseCounter = 0;
 			Connection conn = DatabaseConnection.getConnection();
@@ -45,32 +46,28 @@ public class DatabaseHandler {
 		}
 
 		return false;
-	}
+	}*/
 	
 	/* creates an account in the authDB */
 	public static boolean createAccount(String userName, String hashPW) {
-		try {
-			Connection conn = DatabaseConnection.getConnection();
-			Statement st = conn.createStatement();
-
+		try(Connection con = ConnectionFactory.getInstance().getConnection();
+            Statement st = con.createStatement())
+		{
 			/* try to add an account here from userName and password hash */
 			st.execute(authDB);
-			st.executeUpdate("INSERT INTO `account` (`username`, `hashPW`) VALUES (" +  "'" + userName + "', '" + hashPW + "');");
+			st.executeUpdate("INSERT INTO `account` (`username`, `hashPW`) VALUES (" + "'" + userName + "', '" + hashPW + "');");
 			
-			Logger.writeLog("INSERT INTO `account` (`username`, `hashPW`) VALUES (" +  "'" + userName + "', '" + hashPW + "');" , Logger.LOG_TYPE_VERBOSE);
-
-			// cleanup
-			DatabaseConnection.closeStatement(st);
-			DatabaseConnection.closeConnection(conn);
+			Logger.writeLog("INSERT INTO `account` (`username`, `hashPW`) VALUES (" + "'" + userName + "', '" + hashPW + "');", Logger.LOG_TYPE_VERBOSE);
 
 			return true;
 		}
 		// this will throw duplicate errors because of Unique constraint
 		// just silence the error and red text and tell gameserverpackets creation failed
-		catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+        catch (Exception e)
+        {
+            Logger.writeLog("Failed loading INSERT INTO `account`:", Logger.LOG_TYPE_ERROR);
+            return false;
+        }
 	}
 	
 	// serverpackets console command -- this is hacky needs to be rewritten "for niceness"
@@ -117,34 +114,28 @@ public class DatabaseHandler {
 
 	/* this needs to be modified to return the exact issue */
 	public static String[] queryAuth(String username) {
-		try {
+		try (Connection con = ConnectionFactory.getInstance().getConnection();
+             Statement st = con.createStatement();
+             ResultSet rset = st.executeQuery("SELECT * FROM account WHERE username = '" + username + "'"))
+        {
 			int ID = -1;
 			String[] userInfo = new String[2];
 
-			Connection conn = DatabaseConnection.getConnection();
-			Statement st = conn.createStatement();
-			
-			st.execute(authDB);
-			ResultSet rst = st.executeQuery("SELECT * FROM account WHERE username = '" + username + "'");
-
 			/* ID, Username, Password (Hashed) */
-			if (rst.next()) {
-				ID = rst.getInt("id");
+			if (rset.next()) {
+				ID = rset.getInt("id");
 				userInfo[0] = String.valueOf(ID);
-				userInfo[1] = rst.getString("hashPW");
+				userInfo[1] = rset.getString("hashPW");
 			}
-			else {
+			else
+            {
 				userInfo = null;
 			}
 
-			// cleanup
-			DatabaseConnection.closeStatement(st);
-			DatabaseConnection.closeResultSet(rst);
-			DatabaseConnection.closeConnection(conn);
-
 			return userInfo;
 		} 
-		catch (Exception e) {
+		catch (Exception e)
+        {
 			e.printStackTrace();
 			return null;
 		}

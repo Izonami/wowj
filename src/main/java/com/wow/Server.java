@@ -5,7 +5,6 @@
 package com.wow;
 
 import com.wow.commons.database.pool.impl.ConnectionFactory;
-import com.wow.commons.db.DatabaseConnection;
 import com.wow.config.Config;
 import com.wow.network.Connection;
 import com.wow.network.LogonConnection;
@@ -128,7 +127,7 @@ public class Server
 
 			/* load database connection */
 			// TODO: Some explanation how to start up the database when there isn't one?
-			DatabaseConnection.initConnectionPool();
+			//DatabaseConnection.initConnectionPool();
 
             LOG.info("BunnyEmu is open-source: https://github.com/marijnz/BunnyEmu");
             LOG.info("Remember to create an account before logging in.");
