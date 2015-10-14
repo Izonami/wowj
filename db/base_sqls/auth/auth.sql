@@ -18,22 +18,20 @@ Auth database
 DROP TABLE IF EXISTS `account`;
 
 CREATE TABLE `account` (
-  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Identifier',
-  `username` VARCHAR(32) NOT NULL DEFAULT '',
-  `hashPW` VARCHAR(40) NOT NULL DEFAULT '',
-  `email` TEXT,
+  `login` VARCHAR(45) NOT NULL default '',
+  `password` VARCHAR(45),
+  `email` varchar(255) DEFAULT NULL,
   `joindate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_ip` VARCHAR(30) NOT NULL DEFAULT '127.0.0.1',
+  `lastactive` bigint(13) unsigned NOT NULL DEFAULT '0',
+  `lastIP` CHAR(15) NULL DEFAULT NULL,
   `failed_logins` INT(11) UNSIGNED NOT NULL DEFAULT '0',
   `locked` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
-  `last_login` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
   `online` TINYINT(4) NOT NULL DEFAULT '0',
   `expansion` TINYINT(3) UNSIGNED NOT NULL DEFAULT '4',
   `mutetime` BIGINT(40) UNSIGNED NOT NULL DEFAULT '0',
   `locale` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_username` (`username`)
-) ENGINE=INNODB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='Account System';
+  PRIMARY KEY (`login`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `account` */
 

@@ -76,7 +76,6 @@ final class C3P0ConnectionFactory extends AbstractConnectionFactory
         _dataSource.setUser(Config.DATABASE_LOGIN);
         _dataSource.setPassword(Config.DATABASE_PASSWORD);
 
-		/* Test the connection */
         try
         {
             _dataSource.getConnection().close();

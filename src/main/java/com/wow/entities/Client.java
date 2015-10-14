@@ -57,8 +57,8 @@ public class Client {
         else if(version == ClientVersion.VERSION_MOP)
         	crypt = new MoPCrypt();
         
-        // Char char1 = new Char("Test", -5626, -1496, 100, 1, (byte) 2,(byte) 1);
-       // Char char2 = new Char("Test", 2, 3, 4, 1, (byte) 1,(byte) 7);
+        // Char char1 = new Char("com.wow.Test", -5626, -1496, 100, 1, (byte) 2,(byte) 1);
+       // Char char2 = new Char("com.wow.Test", 2, 3, 4, 1, (byte) 1,(byte) 7);
 	   	//addCharacter(char2);
 	   //	addCharacter(char2);
     }
