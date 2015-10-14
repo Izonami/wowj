@@ -88,7 +88,7 @@ public class WorldSession {
 		
 		int mapID = 1;
 		
-		/* this value will come from a configuration file */
+		/* this value will come from a org.wowj.commons.configuration file */
 		int cStartLevel = 1;
 		
 		connection.getClient().addCharacter(new Char(p.cName, x, y, z, o, mapID, p.cHairStyle, 

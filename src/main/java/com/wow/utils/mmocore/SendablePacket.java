@@ -1,5 +1,6 @@
 package com.wow.utils.mmocore;
 
+
 /**
  * Created by kuksin-mv on 13.10.2015.
  */
@@ -21,15 +22,37 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
     }
 
     /**
-     * Write <B>byte</B> to the buffer. <BR>
-     * 8bit integer (00)
-     * @param data
+     * Write c.
+     *
+     * @param value
+     *        the value
      */
-    protected final void writeC(final int data)
+    protected final void writeC(final boolean value)
     {
-        _buf.put((byte) data);
+        _buf.put((byte) (value ? 1 : 0));
     }
 
+    /**
+     * Write c.
+     *
+     * @param value
+     *        the value (uint8)
+     */
+    protected final void writeC(final int value)
+    {
+        _buf.put((byte) value);
+    }
+
+    /**
+     * Write c.
+     *
+     * @param value
+     *        the value (uint8)
+     */
+    protected final void writeC(final UpdateField value)
+    {
+        writeC(value.getValue());
+    }
 
     /**
      * Write <B>double</B> to the buffer. <BR>

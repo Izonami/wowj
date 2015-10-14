@@ -16,7 +16,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-//import com.wow.utils.AuthCodes;
+//import com.wow.org.wowj.commons.utils.AuthCodes;
 
     /**
      * 
