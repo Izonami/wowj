@@ -41,7 +41,7 @@ public final class SelectorConfig
      * Nagle's algorithm try to conserve bandwidth by minimizing the number of segments that are sent. When applications wish to decrease network latency and increase performance, they can disable Nagle's algorithm (that is enable TCP_NODELAY). Data will be sent earlier, at the cost of an increase
      * in bandwidth consumption. The Nagle's algorithm is described in RFC 896.<BR>
      * <BR>
-     * Summary, data will be sent earlier, thus lowering the ping, at the cost of a small increase in bandwidth consumption.
+     * Summary, entity will be sent earlier, thus lowering the ping, at the cost of a small increase in bandwidth consumption.
      */
     public boolean TCP_NODELAY = false;
 }

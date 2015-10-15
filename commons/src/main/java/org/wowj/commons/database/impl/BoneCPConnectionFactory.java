@@ -29,7 +29,7 @@ final class BoneCPConnectionFactory extends AbstractConnectionFactory
         _dataSource.setPassword(DatabaseConfig.WORLD_DATABASE_PASSWORD);
         _dataSource.setPartitionCount(PARTITION_COUNT);
         _dataSource.setMaxConnectionsPerPartition(DatabaseConfig.WORLD_DATABASE_CONNECTIONS_MAX);
-        _dataSource.setIdleConnectionTestPeriod(DatabaseConfig.DATABASE_MAX_IDLE_TIME, TimeUnit.SECONDS);
+        _dataSource.setIdleConnectionTestPeriod(DatabaseConfig.WORLD_DATABASE_MAX_IDLE_TIME, TimeUnit.SECONDS);
     }
 
     @Override
@@ -41,7 +41,7 @@ final class BoneCPConnectionFactory extends AbstractConnectionFactory
         }
         catch (Exception e)
         {
-            LOG.warn("There has been a problem closing the data source!", e);
+            LOG.warn("There has been a problem closing the entity source!", e);
         }
     }
 

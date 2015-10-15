@@ -7,7 +7,7 @@ import com.wow.entities.packet.Packet;
 import misc.Logger;
 
 /**
- * Update data for WorldObject UpdatePackets
+ * Update entity for WorldObject UpdatePackets
  * 
  * @author Marijn
  *
@@ -106,7 +106,7 @@ public class UpdateData {
 
 	/**
 	 * Write the update hashtable to the update packet.
-	 * @param p The packet the update data has to be written on
+	 * @param p The packet the update entity has to be written on
 	 */
 	public void writeUpdateFields(Packet p) {
 		p.put((byte) maskSize);

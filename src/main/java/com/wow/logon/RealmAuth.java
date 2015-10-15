@@ -107,7 +107,7 @@ public class RealmAuth extends Auth {
 	                authResponse.putLong(0x02);
 	                connection.send(authResponse);
                 } else {
-                	// MoP sends all classes and races + some other data, packet from Arctium
+                	// MoP sends all classes and races + some other entity, packet from Arctium
                     //connection.send(realm.loadPacket("authresponse_mop", 80)); // 0x0890 packet
                     connection.send(new SMSG_AUTH_RESPONSE());
                     connection.send(new ServerPacket(Opcodes.SMSG_UPDATE_CLIENT_CACHE_VERSION, 4));

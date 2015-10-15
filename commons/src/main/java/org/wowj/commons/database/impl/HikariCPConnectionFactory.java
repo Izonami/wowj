@@ -25,7 +25,7 @@ final class HikariCPConnectionFactory extends AbstractConnectionFactory
         _dataSource.setUsername(DatabaseConfig.WORLD_DATABASE_USER);
         _dataSource.setPassword(DatabaseConfig.WORLD_DATABASE_PASSWORD);
         _dataSource.setMaximumPoolSize(DatabaseConfig.WORLD_DATABASE_CONNECTIONS_MAX);
-        _dataSource.setIdleTimeout(DatabaseConfig.DATABASE_MAX_IDLE_TIME);
+        _dataSource.setIdleTimeout(DatabaseConfig.WORLD_DATABASE_MAX_IDLE_TIME);
     }
 
     @Override
@@ -37,7 +37,7 @@ final class HikariCPConnectionFactory extends AbstractConnectionFactory
         }
         catch (Exception e)
         {
-            LOG.warn("There has been a problem closing the data source!", e);
+            LOG.warn("There has been a problem closing the entity source!", e);
         }
     }
 

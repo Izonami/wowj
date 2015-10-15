@@ -46,7 +46,7 @@ public abstract class Connection extends Thread {
 	
 	public void close() {
 		try {
-			//data.allConnections.remove(this);
+			//entity.allConnections.remove(this);
 			out.close();
 			in.close();
 			clientSocket.close();

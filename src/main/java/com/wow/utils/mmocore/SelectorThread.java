@@ -342,7 +342,7 @@ public class SelectorThread<T extends MMOClient<?>> extends Thread
                 // nothing to read
                 return false;
             case 1:
-                // we don`t have enough data for header so we need to read
+                // we don`t have enough entity for header so we need to read
                 key.interestOps(key.interestOps() | SelectionKey.OP_READ);
 
                 // did we use the READ_BUFFER ?
@@ -358,7 +358,7 @@ public class SelectorThread<T extends MMOClient<?>> extends Thread
                 }
                 return false;
             default:
-                // data size excluding header size :>
+                // entity size excluding header size :>
                 final int dataPending = (buf.getShort() & 0xFFFF) - HEADER_SIZE;
 
                 // do we got enough bytes for the packet?

@@ -24,7 +24,7 @@ public class SMSG_AUTH_RESPONSE extends ServerPacket {
 		BitPack bitPack = new BitPack(this);
 		
 		bitPack.write(0); // inqueue
-		bitPack.write(1); // account data
+		bitPack.write(1); // account entity
 		
 		bitPack.write(0);
 		bitPack.write(0);

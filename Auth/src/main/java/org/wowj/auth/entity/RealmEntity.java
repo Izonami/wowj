@@ -1,4 +1,4 @@
-package org.wowj.auth.data;
+package org.wowj.auth.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "realmlist")
-public class RealmData
+public class RealmEntity
 {
     @Id
     @Column(name = "ID", nullable = false)
@@ -160,7 +160,7 @@ public class RealmData
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final RealmData other = (RealmData) obj;
+        final RealmEntity other = (RealmEntity) obj;
         return Objects.equals(this.id, other.id) && Objects.equals(this.name, other.name);
     }
 }

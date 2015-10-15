@@ -53,7 +53,7 @@ public class LogonConnection extends Connection {
 				switch (p.nOpcode) {
 				case CLIENT_LOGON_CHALLENGE:
 					auth.serverLogonChallenge(p); // Responding to the gameserverpackets
-													// with some coowl data.
+													// with some coowl entity.
 					break;
 				case CLIENT_LOGON_PROOF:
 					auth.serverLogonProof(p); // The gameserverpackets proving that the

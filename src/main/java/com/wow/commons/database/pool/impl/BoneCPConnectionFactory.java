@@ -41,7 +41,7 @@ final class BoneCPConnectionFactory extends AbstractConnectionFactory
         }
         catch (Exception e)
         {
-            LOG.warn("There has been a problem closing the data source!", e);
+            LOG.warn("There has been a problem closing the entity source!", e);
         }
     }
 

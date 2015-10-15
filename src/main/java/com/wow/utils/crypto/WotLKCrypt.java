@@ -54,7 +54,7 @@ public class WotLKCrypt implements GenericCrypt {
 	/**
 	 * Decrypt.
 	 *
-	 * @param data the data
+	 * @param data the entity
 	 * @return the byte[]
 	 */
 	public byte[] decrypt(byte[] data) {
@@ -66,7 +66,7 @@ public class WotLKCrypt implements GenericCrypt {
 	/**
 	 * Encrypt.
 	 *
-	 * @param data the data
+	 * @param data the entity
 	 * @return the byte[]
 	 */
 	public byte[] encrypt(byte[] data) {

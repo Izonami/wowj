@@ -1,4 +1,4 @@
-package org.wowj.auth.data;
+package org.wowj.auth.entity;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "account")
-public class AccountData
+public class AccountEntity
 {
     @Id
     @Column(name = "ID", nullable = false)
@@ -64,208 +64,234 @@ public class AccountData
     @Column(name = "LOCALE")
     private Byte locale;
 
-    @Column(name = "LAST_SERVER")
-    private Byte lastServer;
-
-    public Long getId() {
+    public Long getId()
+    {
 
         return this.id;
     }
 
-    public void setId(final Long id) {
+    public void setId(final Long id)
+    {
 
         this.id = id;
     }
 
-    public String getUsername() {
+    public String getUsername()
+    {
 
         return this.username;
     }
 
-    public void setUsername(final String username) {
+    public void setUsername(final String username)
+    {
 
         this.username = username;
     }
 
-    public String getShaPasswordHash() {
+    public String getShaPasswordHash()
+    {
 
         return this.shaPasswordHash;
     }
 
-    public void setShaPasswordHash(final String shaPasswordHash) {
+    public void setShaPasswordHash(final String shaPasswordHash)
+    {
 
         this.shaPasswordHash = shaPasswordHash;
     }
 
-    public Byte getGmlevel() {
+    public Byte getGmlevel()
+    {
 
         return this.gmlevel;
     }
 
-    public void setGmlevel(final Byte gmlevel) {
+    public void setGmlevel(final Byte gmlevel)
+    {
 
         this.gmlevel = gmlevel;
     }
 
-    public String getSessionKey() {
+    public String getSessionKey()
+    {
 
         return this.sessionKey;
     }
 
-    public void setSessionKey(final String sessionKey) {
+    public void setSessionKey(final String sessionKey)
+    {
 
         this.sessionKey = sessionKey;
     }
 
-    public String getV() {
+    public String getV()
+    {
 
         return this.v;
     }
 
-    public void setV(final String v) {
+    public void setV(final String v)
+    {
 
         this.v = v;
     }
 
-    public String getS() {
+    public String getS()
+    {
 
         return this.s;
     }
 
-    public void setS(final String s) {
+    public void setS(final String s)
+    {
 
         this.s = s;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
 
         return this.email;
     }
 
-    public void setEmail(final String email) {
+    public void setEmail(final String email)
+    {
 
         this.email = email;
     }
 
-    public Calendar getJoindate() {
+    public Calendar getJoindate()
+    {
 
         return this.joindate;
     }
 
-    public void setJoindate(final Calendar joindate) {
+    public void setJoindate(final Calendar joindate)
+    {
 
         this.joindate = joindate;
     }
 
-    public String getLastIp() {
+    public String getLastIp()
+    {
 
         return this.lastIp;
     }
 
-    public void setLastIp(final String lastIp) {
+    public void setLastIp(final String lastIp)
+    {
 
         this.lastIp = lastIp;
     }
 
-    public Long getFailedLogins() {
+    public Long getFailedLogins()
+    {
 
         return this.failedLogins;
     }
 
-    public void setFailedLogins(final Long failedLogins) {
+    public void setFailedLogins(final Long failedLogins)
+    {
 
         this.failedLogins = failedLogins;
     }
 
-    public Byte getLocked() {
+    public Byte getLocked()
+    {
 
         return this.locked;
     }
 
-    public void setLocked(final Byte locked) {
+    public void setLocked(final Byte locked)
+    {
 
         this.locked = locked;
     }
 
-    public Calendar getLastLogin() {
+    public Calendar getLastLogin()
+    {
 
         return this.lastLogin;
     }
 
-    public void setLastLogin(final Calendar lastLogin) {
+    public void setLastLogin(final Calendar lastLogin)
+    {
 
         this.lastLogin = lastLogin;
     }
 
-    public Long getActiveRealmId() {
+    public Long getActiveRealmId()
+    {
 
         return this.activeRealmId;
     }
 
-    public void setActiveRealmId(final Long activeRealmId) {
+    public void setActiveRealmId(final Long activeRealmId)
+    {
 
         this.activeRealmId = activeRealmId;
     }
 
-    public Byte getExpansion() {
+    public Byte getExpansion()
+    {
 
         return this.expansion;
     }
 
-    public void setExpansion(final Byte expansion) {
+    public void setExpansion(final Byte expansion)
+    {
 
         this.expansion = expansion;
     }
 
-    public Long getMutetime() {
+    public Long getMutetime()
+    {
 
         return this.mutetime;
     }
 
-    public void setMutetime(final Long mutetime) {
+    public void setMutetime(final Long mutetime)
+    {
 
         this.mutetime = mutetime;
     }
 
-    public Byte getLocale() {
+    public Byte getLocale()
+    {
 
         return this.locale;
     }
 
-    public void setLocale(final Byte locale) {
+    public void setLocale(final Byte locale)
+    {
 
         this.locale = locale;
     }
 
-    public Byte getLastServer() {
-
-        return this.lastServer;
-    }
-
-    public void setLastServer(final Byte lastServer) {
-
-        this.lastServer = lastServer;
-    }
-
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
 
         return Objects.hash(this.id, this.username, this.shaPasswordHash);
     }
 
     @Override
-    public boolean equals(final Object obj) {
+    public boolean equals(final Object obj)
+    {
 
-        if (this == obj) {
+        if (this == obj)
+        {
             return true;
         }
-        if (obj == null) {
+        if (obj == null)
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
+        {
             return false;
         }
-        final AccountData other = (AccountData) obj;
+        final AccountEntity other = (AccountEntity) obj;
         return Objects.equals(this.id, other.id) &&
                 Objects.equals(this.username, other.username) &&
                 Objects.equals(this.shaPasswordHash, other.shaPasswordHash);

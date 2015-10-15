@@ -6,7 +6,7 @@ import com.wow.utils.BitPack;
 import com.wow.utils.Opcodes;
 
 /**
- * Character data, MoP only.
+ * Character entity, MoP only.
  * 
  * @author Marijn
  *

@@ -175,7 +175,7 @@ public class Server
         File logFolder = new File(Config.DATAPACK_ROOT, LOG_FOLDER);
         logFolder.mkdir();
 
-        // Create input stream for log file -- or store file data into memory
+        // Create input stream for log file -- or store file entity into memory
         try (InputStream is = new FileInputStream(new File(LOG_NAME)))
         {
             LogManager.getLogManager().readConfiguration(is);

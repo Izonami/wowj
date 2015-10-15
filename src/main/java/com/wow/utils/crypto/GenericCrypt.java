@@ -9,13 +9,13 @@ package com.wow.utils.crypto;
 public interface GenericCrypt {
 
 	/**
-	 * @param data The data that has to be encrypted, a serverpackets packet.
-	 * @return The encrypted data.
+	 * @param data The entity that has to be encrypted, a serverpackets packet.
+	 * @return The encrypted entity.
 	 */
 	public byte[] encrypt(byte[] data);
 	/**
-	 * @param data The data that has to be decrypted, a gameserverpackets packet
-	 * @return The decrypted data.
+	 * @param data The entity that has to be decrypted, a gameserverpackets packet
+	 * @return The decrypted entity.
 	 */
 	public byte[] decrypt(byte[] data);
 	/**

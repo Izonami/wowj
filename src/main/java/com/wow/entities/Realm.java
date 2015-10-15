@@ -175,7 +175,7 @@ public class Realm extends Thread {
 	 /**
      * Loading a packet text file assuming an arcemu-like packet dump
      * @param packetDir The packet to be loaded
-     * @param capacity	How much size should be buffered for the returned data
+     * @param capacity	How much size should be buffered for the returned entity
      * 
 	  * TODO: Make it logging style independent
      */

@@ -6,7 +6,7 @@ import com.wow.utils.BitPack;
 import com.wow.utils.Opcodes;
 
 /**
- * Realm data, MoP only.
+ * Realm entity, MoP only.
  * 
  * @author Marijn
  * 

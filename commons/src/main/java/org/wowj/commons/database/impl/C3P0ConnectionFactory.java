@@ -50,7 +50,7 @@ final class C3P0ConnectionFactory extends AbstractConnectionFactory
         // testing OnCheckin used with IdleConnectionTestPeriod is faster than testing on checkout
 
         _dataSource.setIdleConnectionTestPeriod(3600); // test idle connection every 60 sec
-        _dataSource.setMaxIdleTime(DatabaseConfig.DATABASE_MAX_IDLE_TIME); // 0 = idle connections never expire
+        _dataSource.setMaxIdleTime(DatabaseConfig.WORLD_DATABASE_MAX_IDLE_TIME); // 0 = idle connections never expire
         // *THANKS* to connection testing configured above
         // but I prefer to disconnect all connections not used
         // for more than 1 hour
@@ -97,7 +97,7 @@ final class C3P0ConnectionFactory extends AbstractConnectionFactory
         }
         catch (Exception e)
         {
-            LOG.warn("There has been a problem closing the data source!", e);
+            LOG.warn("There has been a problem closing the entity source!", e);
         }
     }
 

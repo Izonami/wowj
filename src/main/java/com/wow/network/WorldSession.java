@@ -238,7 +238,7 @@ public class WorldSession {
 	}
 	
 	/**
-	 * Character data? Required for MoP
+	 * Character entity? Required for MoP
 	 */
 	public void handleNameCache(ClientPacket p){
 		//long guid = p.getLong();
@@ -248,7 +248,7 @@ public class WorldSession {
 	}
 	
 	/**
-	 * Realm data? Required for MoP
+	 * Realm entity? Required for MoP
 	 */
 	public void handleRealmCache(ClientPacket p) {
 		int realmId = p.getInt();
